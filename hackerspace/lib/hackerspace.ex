@@ -8,7 +8,6 @@ defmodule Hackerspace do
   Hello world.
 
   ## Examples
-\w
       iex> Hackerspace.hello
       :world
 
@@ -17,6 +16,10 @@ defmodule Hackerspace do
     :world
   end
 
+  @doc """
+    iex> Hackerspace.moduledoc
+    "Documentation for Hackerspace.\\nThis is a simple elixir module docs\\n"
+  """
   def moduledoc do
     @moduledoc
   end
