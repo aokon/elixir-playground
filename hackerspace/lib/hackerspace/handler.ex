@@ -5,13 +5,13 @@ defmodule Hackerspace.Handler do
     |> format_response()
   end
 
-  def format_response(request) do
+  def format_response(_request) do
     """
-      HTTP/1.1 200 OK
-      Content-Type: text/html
-      Content-Length: 20
+    HTTP/1.1 200 OK
+    Content-Type: text/html
+    Content-Length: 20
 
-      Lorem ipsum
+    Lorem ipsum
     """
   end
 end

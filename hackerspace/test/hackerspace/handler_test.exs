@@ -19,6 +19,6 @@ defmodule Hackerspace.HandlerTest do
     Lorem ipsum
     """
 
-    assert Hackerspace.Server.call(request) == expected_response
+    assert Hackerspace.Handler.call(request) == expected_response
   end
 end
