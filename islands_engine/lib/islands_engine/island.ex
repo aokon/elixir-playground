@@ -7,4 +7,5 @@ defmodule IslandsEngine.Island do
   def new, do: %Island{coordinates: MapSet.new, hit_coordinates: MapSet.new}
 
   defp offests(:square), do: [{0,0}, {0,1}, {1,0}, {1,1}]
+  defp offests(:atol), do: [{0,0}, {0,1}, {1,1}, {2,1}, {2,2}]
 end
