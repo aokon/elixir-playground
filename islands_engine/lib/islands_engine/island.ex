@@ -5,4 +5,6 @@ defmodule IslandsEngine.Island do
   defstruct [:coordinates, :hit_coordinates]
 
   def new, do: %Island{coordinates: MapSet.new, hit_coordinates: MapSet.new}
+
+  defp offests(:square), do: [{0,0}, {0,1}, {1,0}, {1,1}]
 end

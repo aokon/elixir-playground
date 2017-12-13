@@ -5,6 +5,6 @@ defmodule IslandsEngine.Guesses do
   defstruct [:hits, :misses]
 
   def new do
-    {:ok, %Guesses{hits: MapSet.new, misses: MapSet.new}}
+    {:ok, %Guesses{hits: MapSet.new(), misses: MapSet.new()}}
   end
 end
