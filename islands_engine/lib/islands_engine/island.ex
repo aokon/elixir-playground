@@ -15,6 +15,9 @@ defmodule IslandsEngine.Island do
     end
   end
 
+  def overlap?(existing_island, new_island),
+    do: not MapSet.disjoint?(existing_island.coordinates, new_island.coordinates)
+
   defp offsets(:square), do: [{0,0}, {0,1}, {1,0}, {1,1}]
   defp offsets(:atol), do: [{0,0}, {0,1}, {1,1}, {2,1}, {2,2}]
   defp offsets(:dot), do: [{0,0}]
