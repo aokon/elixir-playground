@@ -1,5 +1,5 @@
 defmodule IslandsEngine.Board do
-  alias IslandsEngine.Island
+  alias IslandsEngine.{Island, Coordinate}
 
   def new(), do: %{}
 
@@ -14,9 +14,30 @@ defmodule IslandsEngine.Board do
     Enum.all?(Island.types, &(Map.has_key?(board, &1)))
   end
 
+  def guess(board, %Coordinate{} = coordinate) do
+    board
+    |> check_all_islands(coordinate)
+    |> guess_response(board)
+  end
+
   defp overlap_existing_island?(board, new_key, new_island) do
     Enum.any?(board, fn {key, island} ->
        key != new_key and Island.overlap?(island, new_island)
     end)
   end
+
+  defp check_all_islands(board, coordinate) do
+    Enum.find_value(board, :miss, fn {key, island} ->
+      case Island.guess(island, coordinate) do
+        {:hit, island} -> {key, island}
+        {:miss} -> false
+      end
+    end)
+  end
+
+  defp guess_response({key, island}, board) do
+    board = %{board | key => island}
+    {:hit, check_forested(board, key), check_win(board), board}
+  end
+  defp guess_response(:miss, board) do: {:miss, :none, :no_win, board}
 end
