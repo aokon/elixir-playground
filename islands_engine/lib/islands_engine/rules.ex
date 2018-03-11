@@ -17,7 +17,7 @@ defmodule IslandsEngine.Rules do
     end
   end
 
-  def check(%Rules{state: :players_set} = rules, {:islands_set, player}) do
+  def check(%Rules{state: :players_set} = rules, {:set_islands, player}) do
     rules = Map.put(rules, player, :islands_set)
     case both_players_islands_set?(rules) do
       true -> {:ok, %Rules{rules | state: :player1_turn}}
