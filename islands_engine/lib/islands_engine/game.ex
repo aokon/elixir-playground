@@ -5,6 +5,8 @@ defmodule IslandsEngine.Game do
 
   @players [:player1, :player2]
 
+  @timeout 60 * 60 * 24 * 1000
+
   def start_link(name) when is_binary(name), do:
     GenServer.start_link(__MODULE__, name, name: via_tupple(name))
 
@@ -13,7 +15,7 @@ defmodule IslandsEngine.Game do
   def init(name) do
     player1 = %{name: name, board: Board.new(), guesses: Guesses.new()}
     player2 = %{name: nil, board: Board.new(), guesses: Guesses.new()}
-    {:ok, %{player1: player1, player2: player2, rules: %Rules{}}}
+    {:ok, %{player1: player1, player2: player2, rules: %Rules{}}, @timeout}
   end
 
   def add_player(game, name) when is_binary(name), do:
@@ -27,6 +29,10 @@ defmodule IslandsEngine.Game do
 
   def guess_coordinate(game, player, row, col) when player in @players, do:
     GenServer.call(game, {:guess_coordinate, player, row, col})
+
+  def handle_info(:timeout, state_data) do
+    {:stop, {:shutdown, :timeout}, state_data}
+  end
 
   def handle_call({:add_player, name}, _from, state_data) do
     with {:ok, rules} <- Rules.check(state_data.rules, :add_player) do
@@ -107,7 +113,7 @@ defmodule IslandsEngine.Game do
     Map.update!(state_data, player, fn player -> %{player | board: board} end)
 
   defp reply_success(state_data, reply), do:
-    {:reply, reply, state_data}
+    {:reply, reply, state_data, @timeout}
 
   defp player_board(state_data, player), do:
     Map.get(state_data, player).board
