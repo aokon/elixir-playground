@@ -109,6 +109,11 @@ defmodule IslandsEngine.Game do
     end
   end
 
+  def terminate({:shutdown, :timeout}, state_data) do
+    :ets.delete(:game_state, state_data.player1.name)
+  end
+  def terminate(_reason, _state_data), do: :ok
+
   defp opponent(:player1), do: :player2
   defp opponent(:player2), do: :player1
 
