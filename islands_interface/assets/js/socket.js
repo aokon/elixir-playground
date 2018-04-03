@@ -24,6 +24,12 @@ export function sayHello(channel, event, greeting) {
     .receive("error", resp => { console.log("Unable to say hello", resp) })
 }
 
+export function newGame(channel) {
+  channel.push("new_game")
+    .receive("ok", resp => { console.log("New game: ", resp) })
+    .receive("error", resp => { console.log("Unable to start a new game", resp) })
+}
+
 socket.connect()
 
 export default socket

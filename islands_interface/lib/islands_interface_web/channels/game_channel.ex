@@ -24,4 +24,16 @@ defmodule IslandsInterfaceWeb.GameChannel do
     broadcast! socket, "emits_event", payload
     {:noreply, socket}
   end
+
+  # Game logic
+
+  def handle_in("new_game", _paylaod, socket) do
+    "game:" <> player = socket.topic
+    case GameSupervisor.start_game(player) do
+      {:ok, _pid} ->
+        {:reply, :ok, socket}
+      {:error, reason} ->
+        {:reply, {:error, %{reason: inspect(reason)}}, socket}
+    end
+  end
 end
