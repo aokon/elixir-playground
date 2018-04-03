@@ -30,6 +30,11 @@ export function newGame(channel) {
     .receive("error", resp => { console.log("Unable to start a new game", resp) })
 }
 
+export function addPlayer(channel, player) {
+  channel.push("add_player", player)
+    .receive("error", resp => { console.log("Unable to add new player", resp) })
+}
+
 socket.connect()
 
 export default socket
