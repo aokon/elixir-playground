@@ -49,5 +49,16 @@ defmodule IslandsInterfaceWeb.GameChannel do
     end
   end
 
+  def handle_in("position_island", payload, socket) do
+    %{"player" => player, "island" => island, "row" => row, "col" => col} = payload
+    player = String.to_existing_atom(player)
+    island = String.to_existing_atom(island)
+
+    case Game.position_island(via(socket.topic), player, island, row, col) do
+      :ok -> {:reply, :ok, socket}
+      _ -> {:reply, :error, socket}
+    end
+  end
+
   defp via("game:" <> player), do: Game.via_tupple(player)
 end

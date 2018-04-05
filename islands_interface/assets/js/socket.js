@@ -35,6 +35,14 @@ export function addPlayer(channel, player) {
     .receive("error", resp => { console.log("Unable to add new player", resp) })
 }
 
+export function positionIsland(channel, player, island, row, col) {
+  const payload = { player, island, row, col }
+
+  channel.push("position_island", payload)
+    .receive("ok", resp => { console.log("Island positioned", resp) })
+    .receive("error", resp => { console.log("Unable to position island", resp) })
+}
+
 socket.connect()
 
 export default socket
