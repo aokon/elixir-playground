@@ -52,6 +52,13 @@ export function setIslands(channel, player) {
     .receive("error", resp => { console.log(`Unable to set islands for ${player}`, resp) })
 }
 
+export function guessCoordinate(channel, player, row, col) {
+  const payload = { player, island, row, col }
+
+  channel.push("gues_coordinate", payload)
+    .receive("error", resp => { console.log(`Unable to guess coordinate for ${player}`, resp) })
+}
+
 socket.connect()
 
 export default socket

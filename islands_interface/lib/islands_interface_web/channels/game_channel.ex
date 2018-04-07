@@ -71,5 +71,25 @@ defmodule IslandsInterfaceWeb.GameChannel do
     end
   end
 
+  def handle_in("gues_coordinate", payload, socket) do
+    %{"player" => player, "row" => row, "col" => col} = payload
+    player = String.to_existing_atom(player)
+
+    case Game.guess_coordinate(via(socket.topic), player, row, col) do
+      {:hit, island, win} ->
+        result = %{hit: true, island: island, win: win}
+        broadcast! socket, "player_guessed_coordinate", %{player: player, row: row, col: col, result: result}
+        {:noreply, socket}
+      {:miss, island, win} ->
+        result = %{hit: false, island: island, win: win}
+        broadcast! socket, "player_guessed_coordinate", %{player: player, row: row, col: col, result: result}
+        {:noreply, socket}
+      :error ->
+        {:reply, {:error, %{player: player, reason: "Not your turn"}}, socket}
+      {:error, reason} ->
+        {:reply, {:error, %{player: player, reason: reason}}, socket}
+    end
+  end
+
   defp via("game:" <> player), do: Game.via_tupple(player)
 end
