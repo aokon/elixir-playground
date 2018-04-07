@@ -43,6 +43,15 @@ export function positionIsland(channel, player, island, row, col) {
     .receive("error", resp => { console.log("Unable to position island", resp) })
 }
 
+export function setIslands(channel, player) {
+  channel.push("set_islands", player)
+    .receive("ok", resp => {
+       console.log("Island positioned")
+       console.dir(resp.board)
+    })
+    .receive("error", resp => { console.log(`Unable to set islands for ${player}`, resp) })
+}
+
 socket.connect()
 
 export default socket
