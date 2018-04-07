@@ -98,5 +98,10 @@ defmodule IslandsInterfaceWeb.GameChannel do
     end
   end
 
+  def handle_in("show_subscribers", _payload, socket) do
+    broadcast! socket, "subscribers", Presence.list(socket)
+    {:noreply, socket}
+  end
+
   defp via("game:" <> player), do: Game.via_tupple(player)
 end
