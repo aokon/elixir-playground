@@ -9,6 +9,6 @@ defmodule CliTest do
   end
 
   test "returned tree values when there are in the arguments" do
-    assert parse_arguments(["test", "test_project", "99"]) == { "test", "test_project", 99 }
+    assert parse_arguments(["test", "test_project", "99"]) == {"test", "test_project", 99}
   end
 end

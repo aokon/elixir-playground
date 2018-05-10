@@ -9,11 +9,14 @@ defmodule Issues.CLI do
 
   def parse_arguments(argv) do
     options = OptionParser.parse(argv, switches: [help: :boolean], aliases: [h: :help])
+
     case options do
-      {[ help: true ], _, _} ->
+      {[help: true], _, _} ->
         :help
-      {_, [ user, project, count ], _} ->
-        { user, project, String.to_integer(count) }
+
+      {_, [user, project, count], _} ->
+        {user, project, String.to_integer(count)}
+
       _ ->
         :help
     end
