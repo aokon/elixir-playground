@@ -12,6 +12,8 @@ defmodule Issues.CLI do
     case options do
       {[ help: true ], _, _} ->
         :help
+      {_, [ user, project, count ], _} ->
+        { user, project, String.to_integer(count) }
       _ ->
         :help
     end
