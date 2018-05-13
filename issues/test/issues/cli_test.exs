@@ -11,4 +11,8 @@ defmodule CliTest do
   test "returned tree values when there are in the arguments" do
     assert parse_arguments(["test", "test_project", "99"]) == {"test", "test_project", 99}
   end
+
+  test "returned @default_count when there is no issue count in the args" do
+    assert parse_arguments(["test", "test_project"]) == {"test", "test_project", 4}
+  end
 end
