@@ -1,6 +1,6 @@
 defmodule Issues.GithubIssues do
   @user_agent [ {"User-agent", "Elixir learning"} ]
-  @github_url "https://api.github.com"
+  @github_url Application.get_env(:issues, :github_url)
 
   def fetch(user, project) do
     project_issues_url(user, project)
