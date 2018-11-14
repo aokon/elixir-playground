@@ -42,6 +42,7 @@ defmodule Thrall.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:ranch, "~> 1.7", override: true},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
