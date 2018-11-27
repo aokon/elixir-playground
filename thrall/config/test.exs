@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :thrall, Thrall.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("POSTGRESQL_USERNAME"),
+  password: System.get_env("POSTGRESQL_PASSWORD"),
   database: "thrall_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
