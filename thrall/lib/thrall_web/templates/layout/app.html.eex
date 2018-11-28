@@ -5,19 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Thrall · Phoenix Framework</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <link
+      rel="stylesheet"
+      href="<%= Routes.static_path(@conn, "/css/app.css") %>"
+      data-turbolinks-track="reload" />
+    <script
+      type="text/javascript"
+      data-turbolinks-track="reload"
+      src="<%= Routes.static_path(@conn, "/js/app.js") %>"
+      defer>
+    </script>
   </head>
   <body>
     <header>
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li>
+              <%= link("Contact", to: "/contact") %>
+            </li>
           </ul>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
+        <%= link("Home", to: "/") %>
       </section>
     </header>
     <main role="main" class="container">
@@ -25,6 +34,5 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
