@@ -16,6 +16,35 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 //
+import React from "react";
+import ReactDOM from "react-dom";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import HelloPane from "./components/Hello/Hello";
+
+const routes = {
+  "/": HelloPane
+};
+
+const renderComponent = (path) => {
+  const Component = routes[path];
+  const container = document.getElementById("container");
+
+  if (Component && container) {
+    const App = () => (
+      <div id="app">
+        <ErrorBoundary>
+          <Component />
+        </ErrorBoundary>
+      </div>
+    );
+    ReactDOM.render(<App />, container);
+  }
+};
+
+document.addEventListener("turbolinks:load", event => {
+  renderComponent(window.location.pathname);
+});
+
 import Turbolinks from "turbolinks";
 Turbolinks.start();
 
