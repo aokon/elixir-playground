@@ -22,11 +22,11 @@
         <nav role="navigation">
           <ul>
             <li>
-              <%= link("Contact", to: "/contact") %>
+              <%= link("Messages", to: Routes.message_path(@conn, :index)) %>
             </li>
           </ul>
         </nav>
-        <%= link("Home", to: "/") %>
+        <%= link("Home", to: Routes.page_path(@conn, :index)) %>
       </section>
     </header>
     <main role="main" class="container">
