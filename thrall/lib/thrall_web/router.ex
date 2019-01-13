@@ -17,7 +17,7 @@ defmodule ThrallWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/contact", ContactController, :index
+    resources "/messages", MessageController
   end
 
   # Other scopes may use custom stacks.
