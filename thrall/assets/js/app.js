@@ -18,6 +18,7 @@ import "phoenix_html"
 //
 import React from "react";
 import ReactDOM from "react-dom";
+import Turbolinks from "turbolinks";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import HelloPane from "./components/Hello/Hello";
 
@@ -45,6 +46,5 @@ document.addEventListener("turbolinks:load", event => {
   renderComponent(window.location.pathname);
 });
 
-import Turbolinks from "turbolinks";
 Turbolinks.start();
 
