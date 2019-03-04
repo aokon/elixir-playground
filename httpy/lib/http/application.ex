@@ -4,7 +4,7 @@ defmodule Httpy.Application do
 
   def start(_type, _args) do
     children = [
-      {Httpy, port: 8080}
+      Httpy.ServerSupervisor
     ]
 
     opts = [strategy: :one_for_one, name: Httpy.Supervisor]
