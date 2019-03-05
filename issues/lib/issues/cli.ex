@@ -33,7 +33,8 @@ defmodule Issues.CLI do
   def decode_response({:ok, body}), do: body
 
   def decode_response({:error, error}) do
-    IO.puts("Error: There was an issue during fetching from Github: #{error[:message]}")
+    message = Map.get(error, "message")
+    IO.puts("Error: There was an issue during fetching from Github: #{message}")
     System.halt(2)
   end
 
