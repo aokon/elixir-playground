@@ -22,6 +22,7 @@ defmodule Httpy.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:plug_octopus, github: "jeffkreeftmeijer/plug_octopus"},
       {:plug, "~> 1.7"}
     ]
   end

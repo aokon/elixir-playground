@@ -8,7 +8,7 @@ defmodule Httpy.ServerSupervisor do
   @impl true
   def init(_options) do
     children = [
-      {Httpy.PlugAdapter, plug: Httpy.CurrentTime, port: 8080}
+      {Httpy.PlugAdapter, plug: Plug.Octopus, port: 8080}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
