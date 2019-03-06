@@ -27,6 +27,7 @@ defmodule Issues.CLI do
   def process({user, project, _count}) do
     Issues.GithubIssues.fetch(user, project)
     |> decode_response()
+    |> sort_into_ascending_order()
     |> IO.inspect()
   end
 
@@ -36,6 +37,13 @@ defmodule Issues.CLI do
     message = Map.get(error, "message")
     IO.puts("Error: There was an issue during fetching from Github: #{message}")
     System.halt(2)
+  end
+
+  def sort_into_ascending_order(list_of_issues) do
+    list_of_issues
+    |> Enum.sort(fn i1, i2 ->
+      i1["created_at"] <= i2["created_at"]
+    end)
   end
 
   defp args_to_internal_representation([user, project, count]),
