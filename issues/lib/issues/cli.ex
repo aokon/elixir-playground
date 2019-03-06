@@ -24,10 +24,11 @@ defmodule Issues.CLI do
     System.halt(0)
   end
 
-  def process({user, project, _count}) do
+  def process({user, project, count}) do
     Issues.GithubIssues.fetch(user, project)
     |> decode_response()
     |> sort_into_ascending_order()
+    |> last(count)
     |> IO.inspect()
   end
 
@@ -44,6 +45,13 @@ defmodule Issues.CLI do
     |> Enum.sort(fn i1, i2 ->
       i1["created_at"] <= i2["created_at"]
     end)
+  end
+
+  def last(list, count) do
+    list
+    |> Enum.reverse
+    |> Enum.take(count)
+    |> Enum.reverse
   end
 
   defp args_to_internal_representation([user, project, count]),
