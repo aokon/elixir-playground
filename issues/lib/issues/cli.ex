@@ -2,6 +2,8 @@ defmodule Issues.CLI do
   @moduledoc """
   Handle the command line parsing and dispatching to various functions...
   """
+  import Issues.TableFormatter, only: [print_table_form_colums: 2]
+
   @default_count 4
 
   def run(argv) do
@@ -29,6 +31,7 @@ defmodule Issues.CLI do
     |> decode_response()
     |> sort_into_ascending_order()
     |> last(count)
+    |> print_table_form_colums(["number", "created_at", "title"])
     |> IO.inspect()
   end
 
