@@ -13,6 +13,13 @@ defmodule Issues.MixProject do
         main: "Issues",
         extras: ["README.md"],
         markdown_processor: ExDoc.Markdown.Cmark
+      ],
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
       ]
     ]
   end
@@ -33,10 +40,11 @@ defmodule Issues.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 0.13.0"},
+      {:httpoison, "~> 1.5.0"},
       {:poison, "~> 3.1"},
       {:ex_doc, "~> 0.19.3", only: :dev, runtime: false},
-      {:cmark, "~> 0.6", only: :dev}
+      {:cmark, "~> 0.6", only: :dev},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 end

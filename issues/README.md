@@ -8,4 +8,5 @@ Thanks Dave.
 * `mix deps.get` - fetch required dependencies
 * `mix run -e 'Issues.CLI.run(["-h"])'`
 * `mix escript.build` - create exec bin for project
+* `mix coveralls` - get code coverage report
 
