@@ -4,6 +4,12 @@ defmodule TableFormatterTest do
 
   alias Issues.TableFormatter, as: TF
 
+  setup do
+    [hello: "world"]
+  end
+
+  setup :local_update_for_context
+
   @sample_test_data [
     [c1: "r1 c1", c2: "r1 c2", c3: "r1 c3", c4: "r1+++c4"],
     [c1: "r2 c1", c2: "r2 c2", c3: "r2 c3", c4: "r2 c4"],
@@ -13,8 +19,31 @@ defmodule TableFormatterTest do
 
   @headers [:c1, :c2, :c4]
 
-  def split_with_tree_columns do
+  defp split_with_tree_columns do
     TF.split_into_columns(@sample_test_data, @headers)
+  end
+
+  defp local_update_for_context(_context) do
+    [dummy: "Lorem"]
+  end
+
+  defp login_as_admin(_context) do
+    [admin: true]
+  end
+
+  defp set_role_as_editor(_context) do
+    [editor: true]
+  end
+
+  describe "ExUnit callback usage" do
+    setup [:login_as_admin, :set_role_as_editor]
+
+    test "metadata from setup", context do
+      assert context[:hello] == "world"
+      assert context[:dummy] == "Lorem"
+      assert context[:admin]
+      assert context[:editor]
+    end
   end
 
   test "split_into_columns" do
