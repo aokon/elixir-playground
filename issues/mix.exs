@@ -8,7 +8,12 @@ defmodule Issues.MixProject do
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       escript: escript(),
-      deps: deps()
+      deps: deps(),
+      docs: [
+        main: "Issues",
+        extras: ["README.md"],
+        markdown_processor: ExDoc.Markdown.Cmark
+      ]
     ]
   end
 
@@ -29,7 +34,9 @@ defmodule Issues.MixProject do
   defp deps do
     [
       {:httpoison, "~> 0.13.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:ex_doc, "~> 0.19.3", only: :dev, runtime: false},
+      {:cmark, "~> 0.6", only: :dev}
     ]
   end
 end
