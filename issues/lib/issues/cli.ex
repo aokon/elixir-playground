@@ -52,9 +52,9 @@ defmodule Issues.CLI do
 
   def last(list, count) do
     list
-    |> Enum.reverse
+    |> Enum.reverse()
     |> Enum.take(count)
-    |> Enum.reverse
+    |> Enum.reverse()
   end
 
   defp args_to_internal_representation([user, project, count]),
