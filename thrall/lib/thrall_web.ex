@@ -42,6 +42,8 @@ defmodule ThrallWeb do
       import ThrallWeb.ErrorHelpers
       import ThrallWeb.Gettext
       alias ThrallWeb.Router.Helpers, as: Routes
+
+      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
     end
   end
 
@@ -50,6 +52,7 @@ defmodule ThrallWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 

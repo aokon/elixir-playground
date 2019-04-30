@@ -52,7 +52,8 @@ config :thrall, ThrallWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/thrall_web/views/.*(ex)$},
-      ~r{lib/thrall_web/templates/.*(eex)$}
+      ~r{lib/thrall_web/templates/.*(eex)$},
+      ~r{lib/my_app_web/live/.*(ex)$}
     ]
   ]
 
