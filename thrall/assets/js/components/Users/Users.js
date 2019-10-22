@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
 import React from "react";
-import { Query } from "react-apollo";
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 const LIST_USERS = gql`
   {
@@ -12,26 +12,21 @@ const LIST_USERS = gql`
   }
 `;
 
-const Users = () => (
-  <div>
-    <h1>Users!</h1>
-    <Query query={LIST_USERS}>
-      {({ loading, error, data }) => {
-        if (loading) return "Loading...";
-        if (error) return `Error! ${error.message}`;
+const Users = () => {
+  const { loading, error, data } = useQuery(LIST_USERS);
 
-        return (
-          <ul>
-            {data.listUsers.map(user => (
-              <li key={user.id}>
-                {user.name}: {user.email}
-              </li>
-            ))}
-          </ul>
-        );
-      }}
-    </Query>
-  </div>
-);
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
+
+  return (
+    <ul>
+      {data.listUsers.map(user => (
+        <li key={user.id}>
+          {user.name}: {user.email}
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 export default Users;
