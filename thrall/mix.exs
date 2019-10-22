@@ -44,6 +44,11 @@ defmodule Thrall.MixProject do
       {:gettext, "~> 0.16.1"},
       {:jason, "~> 1.0"},
       {:ranch, "~> 1.7", override: true},
+      {:absinthe, "~> 1.4"},
+      {:absinthe_ecto, "~> 0.1.3"},
+      {:absinthe_plug, "~> 1.4"},
+      {:absinthe_phoenix, "~> 1.4.0"},
+      {:cors_plug, "~> 2.0"},
       {:plug_cowboy, "~> 2.0.2"}
     ]
   end
