@@ -21,6 +21,8 @@ defmodule ThrallWeb.Router do
 
     get "/", PageController, :index
     resources "/messages", MessageController
+    resources "/users", UserController
+    live "/counter", CounterLive
   end
 
   # Other scopes may use custom stacks.

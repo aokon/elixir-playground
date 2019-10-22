@@ -3,9 +3,14 @@
   <p>A productive web framework that<br/>does not compromise speed and maintainability.</p>
 </section>
 
-<section class="row">
-  <article class="column">
-    <h2>Home</h2>
-    <div id="container"></div>
-  </article>
-</section>
+<div class="container">
+  <section class="row">
+    <article class="col-sm">
+      <h2>Home</h2>
+      <div id="container"></div>
+    </article>
+    <div class="col-sm">
+      <%= live_render(@conn, ThrallWeb.CounterLive) %>
+    </div>
+  </section>
+</div>

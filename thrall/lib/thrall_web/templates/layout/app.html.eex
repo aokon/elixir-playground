@@ -24,6 +24,9 @@
             <li>
               <%= link("Messages", to: Routes.message_path(@conn, :index)) %>
             </li>
+            <li>
+              <%= link("Users", to: Routes.user_path(@conn, :index)) %>
+            </li>
           </ul>
         </nav>
         <%= link("Home", to: Routes.page_path(@conn, :index)) %>
