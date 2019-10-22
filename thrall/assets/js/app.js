@@ -22,24 +22,31 @@ liveSocket.connect()
 //
 import React from "react";
 import ReactDOM from "react-dom";
+import { ApolloProvider } from "react-apollo";
 import Turbolinks from "turbolinks";
+import { createClient } from "./utils/apollo";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import HelloPane from "./components/Hello/Hello";
+import Users from "./components/Users/Users";
 
 const routes = {
-  "/": HelloPane
+  "/": HelloPane,
+  "/users": Users
 };
 
 const renderComponent = (path) => {
   const Component = routes[path];
   const container = document.getElementById("container");
 
-  if (Component && container) {
+  if(Component && container) {
+    const client = createClient();
     const App = () => (
       <div id="app">
-        <ErrorBoundary>
-          <Component />
-        </ErrorBoundary>
+        <ApolloProvider client={client}>
+          <ErrorBoundary>
+            <Component />
+          </ErrorBoundary>
+        </ApolloProvider>
       </div>
     );
     ReactDOM.render(<App />, container);
