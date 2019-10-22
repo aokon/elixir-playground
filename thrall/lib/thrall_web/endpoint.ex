@@ -1,5 +1,6 @@
 defmodule ThrallWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :thrall
+  use Absinthe.Phoenix.Endpoint
 
   socket "/socket", ThrallWeb.UserSocket,
     websocket: true,
@@ -35,6 +36,7 @@ defmodule ThrallWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
+  plug CORSPlug
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

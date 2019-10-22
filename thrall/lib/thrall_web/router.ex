@@ -26,7 +26,10 @@ defmodule ThrallWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ThrallWeb do
-  #   pipe_through :api
-  # end
+   scope "/api" do
+     pipe_through :api
+
+     forward "/graphql", Absinthe.Plug.GraphiQL, schema: ThrallWeb.Schema
+     forward "/", Absinthe.Plug, schema: ThrallWeb.Schema
+   end
 end
