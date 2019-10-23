@@ -2,9 +2,9 @@ defmodule ThrallWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :thrall
   use Absinthe.Phoenix.Endpoint
 
-  socket "/socket", ThrallWeb.UserSocket,
-    websocket: true,
-    longpoll: false
+  socket "/socket", ThrallWeb.AbsintheSocket,
+      websocket: true,
+      longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket
 
