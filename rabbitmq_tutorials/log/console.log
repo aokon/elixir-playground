@@ -1,0 +1,64 @@
+2019-11-28 18:29:45.776 [info] <0.43.0> Application lager started on node nonode@nohost
+2019-11-28 18:29:45.786 [info] <0.43.0> Application xmerl started on node nonode@nohost
+2019-11-28 18:29:45.789 [info] <0.43.0> Application jsx started on node nonode@nohost
+2019-11-28 18:29:45.797 [info] <0.43.0> Application ranch started on node nonode@nohost
+2019-11-28 18:29:45.798 [info] <0.43.0> Application recon started on node nonode@nohost
+2019-11-28 18:29:45.799 [info] <0.43.0> Application rabbit_common started on node nonode@nohost
+2019-11-28 18:29:45.811 [info] <0.43.0> Application amqp_client started on node nonode@nohost
+2019-11-28 18:29:45.814 [info] <0.43.0> Application amqp started on node nonode@nohost
+2019-11-28 18:29:45.815 [info] <0.43.0> Application rabbitmq_tutorials started on node nonode@nohost
+2019-11-28 18:39:11.739 [info] <0.43.0> Application lager started on node nonode@nohost
+2019-11-28 18:39:11.747 [info] <0.43.0> Application xmerl started on node nonode@nohost
+2019-11-28 18:39:11.751 [info] <0.43.0> Application jsx started on node nonode@nohost
+2019-11-28 18:39:11.758 [info] <0.43.0> Application ranch started on node nonode@nohost
+2019-11-28 18:39:11.759 [info] <0.43.0> Application recon started on node nonode@nohost
+2019-11-28 18:39:11.759 [info] <0.43.0> Application rabbit_common started on node nonode@nohost
+2019-11-28 18:39:11.769 [info] <0.43.0> Application amqp_client started on node nonode@nohost
+2019-11-28 18:39:11.773 [info] <0.43.0> Application amqp started on node nonode@nohost
+2019-11-28 18:39:11.773 [info] <0.43.0> Application rabbitmq_tutorials started on node nonode@nohost
+2019-11-28 18:45:21.058 [info] <0.43.0> Application lager started on node nonode@nohost
+2019-11-28 18:45:21.065 [info] <0.43.0> Application xmerl started on node nonode@nohost
+2019-11-28 18:45:21.071 [info] <0.43.0> Application jsx started on node nonode@nohost
+2019-11-28 18:45:21.079 [info] <0.43.0> Application ranch started on node nonode@nohost
+2019-11-28 18:45:21.081 [info] <0.43.0> Application recon started on node nonode@nohost
+2019-11-28 18:45:21.081 [info] <0.43.0> Application rabbit_common started on node nonode@nohost
+2019-11-28 18:45:21.088 [info] <0.43.0> Application amqp_client started on node nonode@nohost
+2019-11-28 18:45:21.091 [info] <0.43.0> Application amqp started on node nonode@nohost
+2019-11-28 18:45:21.091 [info] <0.43.0> Application rabbitmq_tutorials started on node nonode@nohost
+2019-11-28 18:46:45.072 [info] <0.43.0> Application lager started on node nonode@nohost
+2019-11-28 18:46:45.079 [info] <0.43.0> Application xmerl started on node nonode@nohost
+2019-11-28 18:46:45.083 [info] <0.43.0> Application jsx started on node nonode@nohost
+2019-11-28 18:46:45.089 [info] <0.43.0> Application ranch started on node nonode@nohost
+2019-11-28 18:46:45.090 [info] <0.43.0> Application recon started on node nonode@nohost
+2019-11-28 18:46:45.090 [info] <0.43.0> Application rabbit_common started on node nonode@nohost
+2019-11-28 18:46:45.096 [info] <0.43.0> Application amqp_client started on node nonode@nohost
+2019-11-28 18:46:45.099 [info] <0.43.0> Application amqp started on node nonode@nohost
+2019-11-28 18:46:45.099 [info] <0.43.0> Application rabbitmq_tutorials started on node nonode@nohost
+2019-11-28 18:52:09.670 [info] <0.43.0> Application lager started on node nonode@nohost
+2019-11-28 18:52:09.676 [info] <0.43.0> Application xmerl started on node nonode@nohost
+2019-11-28 18:52:09.678 [info] <0.43.0> Application jsx started on node nonode@nohost
+2019-11-28 18:52:09.683 [info] <0.43.0> Application ranch started on node nonode@nohost
+2019-11-28 18:52:09.685 [info] <0.43.0> Application recon started on node nonode@nohost
+2019-11-28 18:52:09.685 [info] <0.43.0> Application rabbit_common started on node nonode@nohost
+2019-11-28 18:52:09.693 [info] <0.43.0> Application amqp_client started on node nonode@nohost
+2019-11-28 18:52:09.696 [info] <0.43.0> Application amqp started on node nonode@nohost
+2019-11-28 18:52:09.696 [info] <0.43.0> Application rabbitmq_tutorials started on node nonode@nohost
+2019-11-28 19:36:18.009 [error] <0.255.0> gen_server <0.255.0> terminated with reason: {socket_error,timeout}
+2019-11-28 19:36:18.040 [error] <0.240.0> gen_server <0.240.0> terminated with reason: {socket_error,timeout}
+2019-11-28 19:36:18.009 [error] <0.249.0> gen_server <0.249.0> terminated with reason: {socket_error,timeout}
+2019-11-28 19:36:18.040 [error] <0.246.0> gen_server <0.246.0> terminated with reason: {socket_error,timeout}
+2019-11-28 19:36:18.156 [error] <0.249.0> CRASH REPORT Process <0.249.0> with 0 neighbours exited with reason: {socket_error,timeout} in gen_server:handle_common_reply/8 line 751
+2019-11-28 19:36:18.040 [error] <0.240.0> CRASH REPORT Process <0.240.0> with 0 neighbours exited with reason: {socket_error,timeout} in gen_server:handle_common_reply/8 line 751
+2019-11-28 19:36:18.156 [error] <0.247.0> Supervisor {<0.247.0>,amqp_connection_sup} had child connection started with amqp_gen_connection:start_link(<0.248.0>, {amqp_params_network,<<"guest">>,<<"guest">>,<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_a..>,...],...}) at <0.249.0> exit with reason {socket_error,timeout} in context child_terminated
+2019-11-28 19:36:18.041 [error] <0.238.0> Supervisor {<0.238.0>,amqp_connection_sup} had child connection started with amqp_gen_connection:start_link(<0.239.0>, {amqp_params_network,<<"guest">>,<<"guest">>,<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_a..>,...],...}) at <0.240.0> exit with reason {socket_error,timeout} in context child_terminated
+2019-11-28 19:36:18.156 [error] <0.247.0> Supervisor {<0.247.0>,amqp_connection_sup} had child connection started with amqp_gen_connection:start_link(<0.248.0>, {amqp_params_network,<<"guest">>,<<"guest">>,<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_a..>,...],...}) at <0.249.0> exit with reason reached_max_restart_intensity in context shutdown
+2019-11-28 19:36:18.041 [error] <0.238.0> Supervisor {<0.238.0>,amqp_connection_sup} had child connection started with amqp_gen_connection:start_link(<0.239.0>, {amqp_params_network,<<"guest">>,<<"guest">>,<<"/">>,"localhost",5672,0,0,10,50000,none,[fun amqp_a..>,...],...}) at <0.240.0> exit with reason reached_max_restart_intensity in context shutdown
+2019-11-28 19:42:41.317 [info] <0.43.0> Application lager started on node nonode@nohost
+2019-11-28 19:42:41.335 [info] <0.43.0> Application xmerl started on node nonode@nohost
+2019-11-28 19:42:41.342 [info] <0.43.0> Application jsx started on node nonode@nohost
+2019-11-28 19:42:41.350 [info] <0.43.0> Application ranch started on node nonode@nohost
+2019-11-28 19:42:41.352 [info] <0.43.0> Application recon started on node nonode@nohost
+2019-11-28 19:42:41.353 [info] <0.43.0> Application rabbit_common started on node nonode@nohost
+2019-11-28 19:42:41.361 [info] <0.43.0> Application amqp_client started on node nonode@nohost
+2019-11-28 19:42:41.364 [info] <0.43.0> Application amqp started on node nonode@nohost
+2019-11-28 19:42:41.364 [info] <0.43.0> Application rabbitmq_tutorials started on node nonode@nohost
