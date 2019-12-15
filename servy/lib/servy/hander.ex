@@ -27,27 +27,23 @@ defmodule Servy.Handler do
 
   def rewrite_path(conv), do: conv
 
-  def route(conv) do
-    route(conv, conv.method, conv.path)
-  end
-
-  def route(conv, "GET", "/wildthings") do
+  def route(%{method: "GET", path: "/wildthings"} = conv) do
     %{ conv | status: 200, resp_body: "Bears, Lions, Tigers" }
   end
 
-  def route(conv, "GET", "/bears") do
+  def route(%{method: "GET", path: "/bears"} = conv) do
     %{ conv | status: 200, resp_body: "Yogi, Paddington, Teddy" }
   end
 
-  def route(conv, "GET", "/bears/" <> id) do
+  def route(%{method: "GET", path: "/bears/" <> id} = conv) do
     %{ conv | status: 200, resp_body: "Bear #{id}" }
   end
 
-  def route(conv, "DELETE", "/bears/" <> id) do
+  def route(%{method: "DELETE", path: "/bears/" <> id} = conv) do
     %{ conv | status: 200, resp_body: "Deleted bear #{id}" }
   end
 
-  def route(conv, _method, path) do
+  def route(%{method: _method, path: path} = conv) do
     %{ conv | status: 404, resp_body: "No #{path} here!" }
   end
 
@@ -80,39 +76,3 @@ defmodule Servy.Handler do
   end
 end
 
-request = """
-GET /wildfire HTTP/1.1
-Host: example.com
-User-Agent: ExampleBrowser/1.0
-Accept: */*
-
-"""
-
-IO.inspect Servy.Handler.handle(request)
-
-request = """
-GET /bears HTTP/1.1
-Host: example.com
-User-Agent: ExampleBrowser/1.0
-Accept: */*
-
-"""
-IO.inspect Servy.Handler.handle(request)
-
-request = """
-DELETE /bears/22 HTTP/1.1
-Host: example.com
-User-Agent: ExampleBrowser/1.0
-Accept: */*
-
-"""
-IO.inspect Servy.Handler.handle(request)
-
-request = """
-GET /bigfoot HTTP/1.1
-Host: example.com
-User-Agent: ExampleBrowser/1.0
-Accept: */*
-
-"""
-IO.inspect Servy.Handler.handle(request)
