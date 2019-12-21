@@ -1,4 +1,6 @@
 defmodule Servy.Handler do
+  require Logger
+
   def handle(request) do
     request
     |> parse
@@ -64,7 +66,7 @@ defmodule Servy.Handler do
   end
 
   def track404(%{ status: 404, path: path} = conv) do
-    IO.puts "Something went wrong and we loosing the #{path}!!"
+    Logger.warn "Something went wrong and we loosing the #{path}!!"
     conv
   end
 
