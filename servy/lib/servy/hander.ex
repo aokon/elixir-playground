@@ -6,6 +6,7 @@ defmodule Servy.Handler do
     |> rewrite_path
     |> route
     |> track404
+    |> emojify
     |> format_response
   end
 
@@ -68,6 +69,15 @@ defmodule Servy.Handler do
   end
 
   def track404(conv), do: conv
+
+  def emojify(%{status: 200, resp_body: resp_body} = conv) do
+    decoration = String.duplicate(">", 5)
+    decorated_body = decoration <> "\n" <> resp_body <> "\n" <> decoration
+
+    %{conv | resp_body: decorated_body}
+  end
+
+  def emojify(conv), do: conv
 
   def format_response(conv) do
     """
