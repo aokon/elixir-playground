@@ -18,40 +18,40 @@ defmodule Servy.Handler do
     [method, path, _] =
       request
       |> String.split("\n")
-      |> List.first
+      |> List.first()
       |> String.split(" ")
 
-    %{ method: method, path: path, resp_body: "", status: nil }
+    %{method: method, path: path, resp_body: "", status: nil}
   end
 
-  def rewrite_path(%{ path: "/wildfire"} = conv) do
-    %{ conv | path: "/wildthings" }
+  def rewrite_path(%{path: "/wildfire"} = conv) do
+    %{conv | path: "/wildthings"}
   end
 
-  def rewrite_path(%{ path: "/bears?id=" <> id} = conv) do
-    %{ conv | path: "/bears/#{id}" }
+  def rewrite_path(%{path: "/bears?id=" <> id} = conv) do
+    %{conv | path: "/bears/#{id}"}
   end
 
   def rewrite_path(conv), do: conv
 
   def route(%{method: "GET", path: "/wildthings"} = conv) do
-    %{ conv | status: 200, resp_body: "Bears, Lions, Tigers" }
+    %{conv | status: 200, resp_body: "Bears, Lions, Tigers"}
   end
 
   def route(%{method: "GET", path: "/bears"} = conv) do
-    %{ conv | status: 200, resp_body: "Yogi, Paddington, Teddy" }
+    %{conv | status: 200, resp_body: "Yogi, Paddington, Teddy"}
   end
 
   def route(%{method: "GET", path: "/bears/" <> id} = conv) do
-    %{ conv | status: 200, resp_body: "Bear #{id}" }
+    %{conv | status: 200, resp_body: "Bear #{id}"}
   end
 
   def route(%{method: "DELETE", path: "/bears/" <> id} = conv) do
-    %{ conv | status: 200, resp_body: "Deleted bear #{id}" }
+    %{conv | status: 200, resp_body: "Deleted bear #{id}"}
   end
 
   def route(%{method: _method, path: path} = conv) do
-    %{ conv | status: 404, resp_body: "No #{path} here!" }
+    %{conv | status: 404, resp_body: "No #{path} here!"}
   end
 
   defp status_reason(status_code) do
@@ -65,8 +65,8 @@ defmodule Servy.Handler do
     }[status_code]
   end
 
-  def track404(%{ status: 404, path: path} = conv) do
-    Logger.warn "Something went wrong and we loosing the #{path}!!"
+  def track404(%{status: 404, path: path} = conv) do
+    Logger.warn("Something went wrong and we loosing the #{path}!!")
     conv
   end
 
@@ -91,4 +91,3 @@ defmodule Servy.Handler do
     """
   end
 end
-
