@@ -24,19 +24,19 @@ defmodule Servy.Handler do
   end
 
   def route(%Conv{method: "GET", path: "/wildthings"} = conv) do
-    %{conv | status: 200, resp_body: "Bears, Lions, Tigers"}
+    %Conv{conv | status: 200, resp_body: "Bears, Lions, Tigers"}
   end
 
   def route(%Conv{method: "GET", path: "/bears"} = conv) do
-    %{conv | status: 200, resp_body: "Yogi, Paddington, Teddy"}
+    %Conv{conv | status: 200, resp_body: "Yogi, Paddington, Teddy"}
   end
 
   def route(%Conv{method: "GET", path: "/bears/" <> id} = conv) do
-    %{conv | status: 200, resp_body: "Bear #{id}"}
+    %Conv{conv | status: 200, resp_body: "Bear #{id}"}
   end
 
   def route(%Conv{method: "DELETE", path: "/bears/" <> id} = conv) do
-    %{conv | status: 200, resp_body: "Deleted bear #{id}"}
+    %Conv{conv | status: 200, resp_body: "Deleted bear #{id}"}
   end
 
   def route(%Conv{method: "GET", path: "/pages/" <> file} = conv) do
@@ -47,23 +47,12 @@ defmodule Servy.Handler do
   end
 
   def route(%Conv{method: _method, path: path} = conv) do
-    %{conv | status: 404, resp_body: "No #{path} here!"}
-  end
-
-  defp status_reason(status_code) do
-    %{
-      200 => "OK",
-      201 => "Created",
-      401 => "Unauthorized",
-      403 => "Forbidden",
-      404 => "Not Found",
-      500 => "Internal Server Error"
-    }[status_code]
+    %Conv{conv | status: 404, resp_body: "No #{path} here!"}
   end
 
   def format_response(%Conv{} = conv) do
     """
-    HTTP/1.1 #{conv.status} #{status_reason(conv.status)}
+    HTTP/1.1 #{Conv.full_status(conv)}
     Content-Type: text/html
     Content-Length: #{byte_size(conv.resp_body)}
 
