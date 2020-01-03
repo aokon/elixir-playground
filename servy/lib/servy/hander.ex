@@ -10,7 +10,7 @@ defmodule Servy.Handler do
   alias Servy.Conv
   alias Servy.BearsController
 
-  @pages_path Path.expand("pages", File.cwd!)
+  @pages_path Path.expand("pages", File.cwd!())
 
   @doc "Transform the request into a response"
   def handle(request) do
