@@ -41,7 +41,7 @@ defmodule Servy do
     IO.inspect(Servy.Handler.handle(request))
 
     request = """
-    GET /bears?id=99 HTTP/1.1
+    GET /bears?id=4 HTTP/1.1
     Host: example.com
     User-Agent: ExampleBrowser/1.0
     Accept: */*
