@@ -1,5 +1,9 @@
 defmodule Servy.Conv do
-  defstruct method: "", path: "", resp_body: "", status: nil
+  defstruct method: "",
+            path: "",
+            params: %{},
+            resp_body: "",
+            status: nil
 
   alias Servy.Conv
 
