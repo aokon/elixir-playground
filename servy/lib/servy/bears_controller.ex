@@ -8,7 +8,7 @@ defmodule Servy.BearsController do
       Wildthings.list_bears()
       |> Enum.filter(&Bear.is_polar/1)
       |> Enum.map(&bear_item/1)
-      |> Enum.join
+      |> Enum.join()
 
     %Conv{conv | status: 200, resp_body: "<ul>#{items}</ul>"}
   end
