@@ -22,5 +22,4 @@ defmodule Servy.BearsController do
   def destroy(conv, %{"id" => id}) do
     %Conv{conv | status: 200, resp_body: "Deleted bear #{id}"}
   end
-
 end

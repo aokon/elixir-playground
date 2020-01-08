@@ -12,17 +12,19 @@ defmodule Servy.Plugins do
 
   def rewrite_path(%Conv{} = conv), do: conv
 
-  def log(%Conv{} = conv) do 
-    if Mix.env == :development do
+  def log(%Conv{} = conv) do
+    if Mix.env() == :development do
       IO.inspect(conv)
     end
+
     conv
   end
 
   def track404(%Conv{status: 404, path: path} = conv) do
-    if Mix.env != :test do
+    if Mix.env() != :test do
       Logger.warn("Something went wrong and we loosing the #{path}!!")
     end
+
     conv
   end
 
