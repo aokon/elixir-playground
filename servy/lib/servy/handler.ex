@@ -5,7 +5,7 @@ defmodule Servy.Handler do
 
   import Servy.FileHandler, only: [handle_file: 2]
   import Servy.Parser, only: [parse: 1]
-  import Servy.Plugins, only: [log: 1, track404: 1, emojify: 1, rewrite_path: 1]
+  import Servy.Plugins, only: [log: 1, track404: 1, rewrite_path: 1]
 
   alias Servy.Conv
   alias Servy.BearsController
@@ -20,7 +20,6 @@ defmodule Servy.Handler do
     |> rewrite_path
     |> route
     |> track404
-    |> emojify
     |> format_response
   end
 
