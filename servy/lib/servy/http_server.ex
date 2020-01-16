@@ -13,11 +13,14 @@ defmodule Servy.HTTPServer do
 
   def accept_loop(listen_sock) do
     {:ok, client_sock} = :gen_tcp.accept(listen_sock)
-    serve(client_sock)
+    #serve(client_sock)
+    spawn(fn -> serve(client_sock) end)
     accept_loop(listen_sock)
   end
 
   def serve(client_sock) do
+    IO.puts "Handled by #{inspect(self())}"
+
     client_sock
     |> read_request()
     |> Handler.handle()

@@ -35,6 +35,11 @@ defmodule Servy.Handler do
     BearsController.index(conv)
   end
 
+  def route(%Conv{method: "GET", path: "/sleep"} = conv) do
+    :timer.sleep(10000)
+    %Conv{conv | status: 200, resp_body: "Woke up!"}
+  end
+
   def route(%Conv{method: "GET", path: "/bears/" <> id} = conv) do
     params = Map.put(conv.params, "id", id)
     BearsController.show(conv, params)
