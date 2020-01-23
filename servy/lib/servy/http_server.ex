@@ -6,20 +6,21 @@ defmodule Servy.HTTPServer do
   def start(port) when is_integer(port) and port > 1023 do
     {:ok, listen_sock} = :gen_tcp.listen(port, @config)
 
-    IO.puts "Listening on #{port} port...."
+    IO.puts("Listening on #{port} port....")
 
     accept_loop(listen_sock)
   end
 
   def accept_loop(listen_sock) do
     {:ok, client_sock} = :gen_tcp.accept(listen_sock)
-    #serve(client_sock)
-    spawn(fn -> serve(client_sock) end)
+    # serve(client_sock)
+    pid = spawn(fn -> serve(client_sock) end)
+    :ok = :gen_tcp.controlling_process(client_sock, pid)
     accept_loop(listen_sock)
   end
 
   def serve(client_sock) do
-    IO.puts "Handled by #{inspect(self())}"
+    IO.puts("Handled by #{inspect(self())}")
 
     client_sock
     |> read_request()
@@ -30,8 +31,8 @@ defmodule Servy.HTTPServer do
   def read_request(client_sock) do
     {:ok, request} = :gen_tcp.recv(client_sock, 0)
 
-    IO.puts "Received request #{request}...\n"
-    IO.puts request
+    IO.puts("Received request #{request}...\n")
+    IO.puts(request)
 
     request
   end
@@ -39,8 +40,8 @@ defmodule Servy.HTTPServer do
   def write_response(response, client_sock) do
     :ok = :gen_tcp.send(client_sock, response)
 
-    IO.puts "Sent response...\n"
-    IO.puts response
+    IO.puts("Sent response...\n")
+    IO.puts(response)
 
     :ok = :gen_tcp.close(client_sock)
   end
