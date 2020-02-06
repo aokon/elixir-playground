@@ -1,0 +1,12 @@
+<h1>Snapshots!</h1>
+
+<ul>
+  <%= for snap <- snapshots do %>
+    <li><%= snap %></li>
+  <% end %>
+</ul>
+
+<h2>Location</h2>
+<p>Lang: <%= locations.lat %></p>
+<p>Long: <%= locations.lng %></p>
+

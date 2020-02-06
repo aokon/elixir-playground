@@ -9,8 +9,7 @@ defmodule Servy.Handler do
 
   alias Servy.Conv
   alias Servy.BearsController
-  alias Servy.VideoCam
-  alias Servy.Tracker
+  alias Servy.SnapshotController
 
   @pages_path Path.expand("pages", File.cwd!())
 
@@ -47,15 +46,7 @@ defmodule Servy.Handler do
   end
 
   def route(%Conv{ method: "GET", path: "/snapshots" } = conv) do
-    snapshots =
-      ["cam-1", "cam-2", "cam-3"]
-      |> Enum.map(&Servy.Fetcher.async(fn -> VideoCam.get_snapshot(&1) end))
-      |> Enum.map(&Servy.Fetcher.await/1)
-
-    locations_pid = Servy.Fetcher.async(fn -> Tracker.get_location("bigfoot") end)
-    locations = Servy.Fetcher.await(locations_pid)
-
-    %Conv{ conv | status: 200, resp_body: inspect({snapshots, locations})}
+    SnapshotController.index(conv)
   end
 
   def route(%Conv{method: "GET", path: "/bears/" <> id} = conv) do
