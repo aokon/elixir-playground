@@ -17,9 +17,9 @@ defmodule HandlerTest do
     assert response == """
            HTTP/1.1 200 OK\r
            Content-Type: text/html\r
-           Content-Length: 26\r
+           Content-Length: 14\r
            \r
-           >>>>>\nDeleted bear 1\n>>>>>
+           Deleted bear 1
            """
   end
 
@@ -31,14 +31,18 @@ defmodule HandlerTest do
     Accept: */*\r
     \r
     """
+    json =
+      Servy.Wildthings.list_bears()
+      |> Jason.encode!()
 
     response = handle(request)
 
     assert response == """
            HTTP/1.1 200 OK\r
-           Content-Type: text/html\r
-           Content-Length: 26\r
+           Content-Type: application/json\r
+           Content-Length: 605\r
            \r
+           #{json}
            """
   end
 end
