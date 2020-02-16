@@ -3,5 +3,8 @@ defmodule Servy.SnapshotView do
 
   @templates_path Path.expand("templates", File.cwd!())
 
-  EEx.function_from_file(:def, :index, Path.join(@templates_path, "snapshot/index.eex"), [:snapshots, :locations])
+  EEx.function_from_file(:def, :index, Path.join(@templates_path, "snapshot/index.eex"), [
+    :snapshots,
+    :locations
+  ])
 end

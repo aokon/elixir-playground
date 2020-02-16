@@ -31,6 +31,7 @@ defmodule HandlerTest do
     Accept: */*\r
     \r
     """
+
     json =
       Servy.Wildthings.list_bears()
       |> Jason.encode!()

@@ -14,6 +14,6 @@ defmodule Servy.SnapshotController do
     locations_pid = Fetcher.async(fn -> Tracker.get_location("bigfoot") end)
     locations = Fetcher.await(locations_pid)
 
-    %Conv{ conv | status: 200, resp_body: SnapshotView.index(snapshots, locations) }
+    %Conv{conv | status: 200, resp_body: SnapshotView.index(snapshots, locations)}
   end
 end

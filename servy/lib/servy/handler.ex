@@ -45,7 +45,7 @@ defmodule Servy.Handler do
     %Conv{conv | status: 200, resp_body: "Woke up!"}
   end
 
-  def route(%Conv{ method: "GET", path: "/snapshots" } = conv) do
+  def route(%Conv{method: "GET", path: "/snapshots"} = conv) do
     SnapshotController.index(conv)
   end
 
