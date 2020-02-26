@@ -10,6 +10,7 @@ defmodule Servy.Handler do
   alias Servy.Conv
   alias Servy.BearsController
   alias Servy.SnapshotController
+  alias Servy.FourOhFourCounter, as: Counter
 
   @pages_path Path.expand("pages", File.cwd!())
 
@@ -76,6 +77,10 @@ defmodule Servy.Handler do
 
   def route(%Conv{method: "POST", path: "/bears"} = conv) do
     BearsController.create(conv, conv.params)
+  end
+
+  def route(%Conv{method: "GET", path: "/404s"} = conv) do
+    %Conv{conv | status: 200, resp_body: inspect(Counter.get_counts)}
   end
 
   def route(%Conv{method: _method, path: path} = conv) do
