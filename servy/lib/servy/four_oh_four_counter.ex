@@ -1,40 +1,44 @@
 defmodule Servy.FourOhFourCounter do
   @name :four_oh_four_counter
 
+  alias Servy.GenericServer
+
   def start do
-    pid = spawn(__MODULE__, :listen_loop, [])
-    Process.register(pid, @name)
-    pid
+    GenericServer.start(__MODULE__, %{}, @name)
   end
 
-  def listen_loop(state \\ %{}) do
-    receive do
-      {:bump_count, path} ->
-        counter = state[path] || 0
-        state = Map.put(state, path, counter + 1)
-        listen_loop(state)
-
-      {sender, :get_count, path} ->
-        send(sender, {:response, state[path]})
-        listen_loop(state)
-
-      {sender, :get_counts} ->
-        send(sender, {:response, state})
-        listen_loop(state)
-    end
+  def handle_call({:get_count, path}, state) do
+    {state[path], state}
   end
+
+  def handle_call({:get_counts}, state) do
+    {state, state}
+  end
+
+  def handle_cast({:bump_count, path}, state) do
+    counter = state[path] || 0
+    Map.put(state, path, counter + 1)
+  end
+
+  def handle_cast({:clear}, _state) do
+    %{}
+  end
+
+  # Public API
 
   def bump_count(path) do
-    send(@name, {:bump_count, path})
+    GenericServer.cast(@name, {:bump_count, path})
   end
 
   def get_count(path) do
-    send(@name, {self(), :get_count, path})
-    receive do {:response, value} -> value end
+    GenericServer.call(@name, {:get_count, path})
   end
 
   def get_counts do
-    send(@name, {self(), :get_counts})
-    receive do {:response, value} -> value end
+    GenericServer.call(@name, {:get_counts})
+  end
+
+  def clear do
+    GenericServer.cast(@name, {:clear})
   end
 end
