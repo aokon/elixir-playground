@@ -1,66 +1,45 @@
 defmodule Servy.PledgeServer do
-  @name __MODULE__
+  use GenServer
 
   def start(initial_state \\ []) do
     IO.puts("Starting the pledge server...")
-    pid = spawn(__MODULE__, :listen_loop, [initial_state])
-    Process.register(pid, @name)
-    pid
+    GenServer.start(__MODULE__, initial_state, name: __MODULE__)
   end
 
-  def listen_loop(state) do
-    receive do
-      {:create_pledge, name, amount} ->
-        state = [{name, amount} | state]
-        listen_loop(state)
-
-      {sender, :recent_pledges} ->
-        send(sender, {:response, Enum.take(state, 3)})
-        listen_loop(state)
-
-      {sender, :total_pledged} ->
-        total_pledged =
-          Enum.take(state, 3)
-          |> Enum.reduce(0, fn {_name, amount}, acc -> amount + acc end)
-
-        send(sender, {:response, total_pledged})
-        listen_loop(state)
-
-      unexpected ->
-        IO.puts "unexpected messaged: #{inspect(unexpected)}"
-        listen_loop(state)
-    end
+  def init(initial_state) do
+    {:ok, initial_state}
   end
+
+  # Client API
 
   def recent_pledges do
-    send(@name, {self(), :recent_pledges})
-
-    receive do
-      {:response, recent_pledges} -> recent_pledges
-    end
+    GenServer.call(__MODULE__, :recent_pledges)
   end
 
   def total_pledged do
-    send(@name, {self(), :total_pledged})
-
-    receive do
-      {:response, total_pledged} -> total_pledged
-    end
+    GenServer.call(__MODULE__, :total_pledges)
   end
 
   def create_pledge(name, amount) do
-    send(@name, {:create_pledge, name, amount})
+    GenServer.cast(__MODULE__, {:create_pledges, name, amount})
+  end
+
+  # Server API
+
+  def handle_call(:recent_pledges, _from, state) do
+    {:reply, Enum.take(state, 3), state}
+  end
+
+  def handle_call(:total_pledges, _from, state) do
+    total_pledges =
+      Enum.take(state, 3)
+      |> Enum.reduce(0, fn {_name, amount}, acc -> amount + acc end)
+
+    {:reply, total_pledges , state}
+  end
+
+  def handle_cast({:create_pledges, name, amount}, state) do
+    new_state = [{name, amount} | state]
+    {:noreply, new_state}
   end
 end
-
-# pid = Servy.PledgeServer.start()
-
-# send pid, {:create_pledge, "larry", 10}
-# send pid, {:create_pledge, "moe", 20}
-# send pid, {:create_pledge, "curly", 30}
-# send pid, {:create_pledge, "daisy", 40}
-# send pid, {:create_pledge, "grace", 50}
-
-# send pid, {self(), :recent_pledges}
-
-# receive do {:response, pledges} -> IO.inspect pledges end
