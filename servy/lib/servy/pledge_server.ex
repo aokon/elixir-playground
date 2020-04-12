@@ -1,9 +1,11 @@
 defmodule Servy.PledgeServer do
   use GenServer
 
-  def start(initial_state \\ []) do
+  @name :pledge_server
+
+  def start_link(initial_state \\ []) do
     IO.puts("Starting the pledge server...")
-    GenServer.start(__MODULE__, initial_state, name: __MODULE__)
+    GenServer.start_link(__MODULE__, initial_state, name: @name)
   end
 
   def init(initial_state) do

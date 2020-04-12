@@ -10,8 +10,8 @@ defmodule Servy.SensorServer do
 
   # Client Interface
 
-  def start do
-    GenServer.start(__MODULE__, %State{}, name: @name)
+  def start_link(_args) do
+    GenServer.start_link(__MODULE__, %State{}, name: @name)
   end
 
   def set_refresh_interval(interval_in_ms) do
