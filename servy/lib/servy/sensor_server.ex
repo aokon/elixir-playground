@@ -11,6 +11,7 @@ defmodule Servy.SensorServer do
   # Client Interface
 
   def start_link(_args) do
+    IO.puts "Starting the SensorServer..."
     GenServer.start_link(__MODULE__, %State{}, name: @name)
   end
 
